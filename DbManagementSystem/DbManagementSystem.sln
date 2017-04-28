@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Test", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Core", "DbManagementSystem.Core\DbManagementSystem.Core.csproj", "{C29095D6-AA49-424E-9F8C-3DDD647DBF08}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Console", "DbManagementSystem.Console\DbManagementSystem.Console.csproj", "{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{C29095D6-AA49-424E-9F8C-3DDD647DBF08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C29095D6-AA49-424E-9F8C-3DDD647DBF08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C29095D6-AA49-424E-9F8C-3DDD647DBF08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
