@@ -1,18 +1,44 @@
 ﻿using System;
 using DbManagementSystem.Core.Database;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 {
     class DeleteDatabaseQueryExecutor : IQueryExecutor
     {
+        private static readonly string MATCH = @"^DELETE DATABASE (?<databaseName>\w+)$";
+
         public IQueryResult Execute(IDatabaseConnection databaseConnection, IQuery query)
         {
-            throw new NotImplementedException();
+            var sqlQuery = query.GetQuery();
+            var match = Regex.Match(sqlQuery, MATCH, RegexOptions.IgnoreCase);
+            if (!match.Success)
+            {
+                return new SqlQueryResult(0, false, string.Format("Invalid query: --{0}--", sqlQuery), null);
+            }
+
+            var databaseName = match.Groups["databaseName"].Value;
+            var databaseLocation = databaseConnection.GetServerLocation() + "/" + databaseName;
+            if (!Directory.Exists(databaseLocation))
+            {
+                return new SqlQueryResult(0, false, string.Format("Database does not exist: --{0}--", sqlQuery), null);
+            }
+
+            try
+            {
+                Directory.Delete(databaseLocation);
+                return new SqlQueryResult(0, true, "Database successfully deleted", null);
+            }
+            catch (Exception exception)
+            {
+                return new SqlQueryResult(0, false, string.Format("An error occured: --{0}--", exception.Message), null);
+            }
         }
 
         public bool MatchesQuery(IQuery query)
         {
-            throw new NotImplementedException();
+            return Regex.Match(query.GetQuery(), MATCH, RegexOptions.IgnoreCase).Success;
         }
     }
 }

@@ -56,7 +56,7 @@ namespace DbManagementSystem.Core.Database
                             DatabaseName = databaseName,
                             Name = tableName,
                             Size = new FileInfo(tableLocation).Length / 1024.0d,
-                            Columns = columns.Split(',').ToDictionary(k => k.Split(':')[0], v => v.Split(':')[0])
+                            Columns = columns.Split(',').ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1])
                         };
                     }
                 }

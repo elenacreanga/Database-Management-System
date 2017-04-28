@@ -2,7 +2,7 @@
 {
     interface IQuery
     {
+        string GetQuery();
         IQuery SetParameter(string name, object value);
-        IQueryResult Execute();
     }
 }

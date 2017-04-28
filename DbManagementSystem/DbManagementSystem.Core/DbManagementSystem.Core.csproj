@@ -40,8 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseCofiguration.cs" />
     <Compile Include="Database\DatabaseConnection.cs" />
     <Compile Include="Database\DatabaseManager.cs" />
+    <Compile Include="Database\IDatabaseConfiguration.cs" />
     <Compile Include="Database\ITableImporter.cs" />
     <Compile Include="Database\Models\Database.cs" />
     <Compile Include="Database\IDatabaseConnection.cs" />

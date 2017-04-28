@@ -4,14 +4,22 @@ namespace DbManagementSystem.Core.Query
 {
     class SqlQuery : IQuery
     {
-        public IQueryResult Execute()
+        private string query;
+
+        public SqlQuery(string query)
         {
-            throw new NotImplementedException();
+            this.query = query ?? string.Empty;
+        }
+
+        public string GetQuery()
+        {
+            return this.query.Trim();
         }
 
         public IQuery SetParameter(string name, object value)
         {
-            throw new NotImplementedException();
+            this.query = this.query.Replace(":" + name, (value ?? string.Empty).ToString());
+            return this;
         }
     }
 }

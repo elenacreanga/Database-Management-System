@@ -1,28 +1,60 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DbManagementSystem.Core.Query
 {
     class SqlQueryResult : IQueryResult
     {
-        public int RowsAffected => throw new NotImplementedException();
+        private readonly List<Dictionary<string, object>> result;
 
-        public bool Success => throw new NotImplementedException();
+        private int readIndex;
 
-        public string Message => throw new NotImplementedException();
+        public int RowsAffected { get; }
+
+        public bool Success { get; }
+
+        public string Message { get; }
+
+        public SqlQueryResult(int rowsAffected, bool success, string message, List<Dictionary<string, object>> result)
+        {
+            this.RowsAffected = rowsAffected;
+            this.Success = success;
+            this.Message = message;
+            this.result = result;
+            this.readIndex = -1;
+        }
 
         public object GetValue(string name)
         {
-            throw new NotImplementedException();
+            if(this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
+            {
+                this.result[readIndex].TryGetValue(name, out object value);
+                return value;
+            }
+
+            return null;
         }
 
         public object GetValue(int index)
         {
-            throw new NotImplementedException();
+            if (this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
+            {
+                return this.result[readIndex].ElementAtOrDefault(index).Value;
+            }
+
+            return null;
         }
 
         public bool Read()
         {
-            throw new NotImplementedException();
+            if (this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
+            {
+                this.readIndex++;
+                return true;
+            }
+
+            return false;
         }
     }
 }

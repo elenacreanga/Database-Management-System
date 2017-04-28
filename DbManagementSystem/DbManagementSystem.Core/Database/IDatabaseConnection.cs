@@ -2,6 +2,7 @@
 {
     interface IDatabaseConnection
     {
+        IDatabaseConfiguration GetDatabaseConfiguration();
         string GetServerLocation();
         string GetDatabaseName();
         string GetTableName();
