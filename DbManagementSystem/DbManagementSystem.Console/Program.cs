@@ -4,6 +4,7 @@
     {
         static void Main(string[] args)
         {
+            System.Console.WriteLine("----Database Management System Console----");
         }
     }
 }
