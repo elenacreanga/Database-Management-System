@@ -3,7 +3,7 @@ using DbManagementSystem.Core.Database;
 
 namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
 {
-    class InsertQueryExecutor : IQueryExecutor
+    public class InsertQueryExecutor : IQueryExecutor
     {
         public IQueryResult Execute(IDatabaseConnection databaseConnection, IQuery query)
         {

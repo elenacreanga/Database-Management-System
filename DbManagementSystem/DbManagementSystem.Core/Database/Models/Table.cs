@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Database
 {
-    class Table
+    public class Table
     {
         public string Name { get; set; }
         public double Size { get; set; }

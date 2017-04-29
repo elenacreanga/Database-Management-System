@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace DbManagementSystem.Core.Database
 {
-    class DatabaseManager : IDatabaseManager
+    public class DatabaseManager : IDatabaseManager
     {
         private readonly IDatabaseConnection databaseConnection;
 

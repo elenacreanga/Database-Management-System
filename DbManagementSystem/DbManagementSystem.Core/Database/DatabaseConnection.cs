@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Database
 {
-    class DatabaseConnection : IDatabaseConnection
+    public class DatabaseConnection : IDatabaseConnection
     {
         private readonly IDatabaseConfiguration databaseConfiguration;
         private readonly string serverLocation;
@@ -12,9 +12,9 @@ namespace DbManagementSystem.Core.Database
         public DatabaseConnection(IDatabaseConfiguration databaseConfiguration, string serverLocation, string databaseName = null, string tableName = null)
         {
             this.databaseConfiguration = databaseConfiguration;
-            this.serverLocation = serverLocation;
-            this.databaseName = databaseName;
-            this.tableName = tableName;
+            this.serverLocation = serverLocation ?? string.Empty;
+            this.databaseName = databaseName ?? string.Empty;
+            this.tableName = tableName ?? string.Empty;
         }
 
         public IDatabaseConfiguration GetDatabaseConfiguration()

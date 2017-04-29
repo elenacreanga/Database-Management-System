@@ -1,6 +1,6 @@
 ﻿namespace DbManagementSystem.Core.Database
 {
-    interface ITableImporter
+    public interface ITableImporter
     {
         bool Import(IDatabaseConnection databaseConnection, string data);
     }

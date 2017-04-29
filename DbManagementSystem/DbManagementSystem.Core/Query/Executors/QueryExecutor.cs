@@ -8,7 +8,7 @@ using System.IO;
 
 namespace DbManagementSystem.Core.Query.Executors
 {
-    class QueryExecutor : IQueryExecutor
+    public class QueryExecutor : IQueryExecutor
     {
         private readonly List<IQueryExecutor> queryExecutors;
 

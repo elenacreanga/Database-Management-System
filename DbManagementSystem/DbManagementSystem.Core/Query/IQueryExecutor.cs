@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Query
 {
-    interface IQueryExecutor
+    public interface IQueryExecutor
     {
         IQueryResult Execute(IDatabaseConnection databaseConnection, IQuery query);
         bool MatchesQuery(IQuery query);

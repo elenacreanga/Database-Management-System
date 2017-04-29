@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 {
-    class AlterTableQueryExecutor : IQueryExecutor
+    public class AlterTableQueryExecutor : IQueryExecutor
     {
         private static readonly string MATCH = @"^ALTER TABLE (?<tableName>\w+) (?<action>(ADD|REMOVE)) COLUMNS \((?<columns>[\s\S]+)\)$";
 
@@ -33,16 +33,6 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
                 return new SqlQueryResult(0, false, string.Format("Invalid columns: --{0}--", rawColumns), null);
             }
 
-            foreach (var column in columns)
-            {
-                var columnMetadata = column.Split(new[] { ':' }, StringSplitOptions.RemoveEmptyEntries);
-                if (columnMetadata.Length != 2 || string.IsNullOrWhiteSpace(columnMetadata[0]) || string.IsNullOrWhiteSpace(columnMetadata[0])
-                    || !databaseConnection.GetDatabaseConfiguration().IsDataTypeAllowed(columnMetadata[1]))
-                {
-                    return new SqlQueryResult(0, false, string.Format("Invalid column: --{0}--", column), null);
-                }
-            }
-
             var tableData = File.ReadAllLines(tableLocation);
             var orderedTableColumns = tableData.FirstOrDefault().Split(',').ToList();
             var tableColumns = orderedTableColumns.ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1]);
@@ -53,6 +43,12 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
                 var affectedColumns = columns.ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1]);
                 foreach (var columnName in affectedColumns.Keys)
                 {
+                    if (string.IsNullOrWhiteSpace(columnName) || string.IsNullOrWhiteSpace(affectedColumns[columnName])
+                        || !databaseConnection.GetDatabaseConfiguration().IsDataTypeAllowed(affectedColumns[columnName]))
+                    {
+                        return new SqlQueryResult(0, false, string.Format("Invalid column: --{0}:{1}--", columnName, affectedColumns[columnName]), null);
+                    }
+
                     if (tableColumns.ContainsKey(columnName))
                     {
                         return new SqlQueryResult(0, false, string.Format("Column already exists: --{0}--", columnName), null);

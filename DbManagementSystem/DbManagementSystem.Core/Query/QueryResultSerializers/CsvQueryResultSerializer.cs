@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Query.QueryResultSerializers
 {
-    class CsvQueryResultSerializer : IQueryResultSerializer
+    public class CsvQueryResultSerializer : IQueryResultSerializer
     {
         public string Serialize(IQueryResult queryResult)
         {

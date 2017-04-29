@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 {
-    class DeleteTableQueryExecutor : IQueryExecutor
+    public class DeleteTableQueryExecutor : IQueryExecutor
     {
         private static readonly string MATCH = @"^DELETE TABLE (?<tableName>\w+)$";
 

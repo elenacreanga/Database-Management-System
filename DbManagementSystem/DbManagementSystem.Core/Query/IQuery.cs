@@ -1,6 +1,6 @@
 ﻿namespace DbManagementSystem.Core.Query
 {
-    interface IQuery
+    public interface IQuery
     {
         string GetQuery();
         IQuery SetParameter(string name, object value);

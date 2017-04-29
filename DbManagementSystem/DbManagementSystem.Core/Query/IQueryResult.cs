@@ -1,6 +1,6 @@
 ﻿namespace DbManagementSystem.Core.Query
 {
-    interface IQueryResult
+    public interface IQueryResult
     {
         int RowsAffected { get; }
         bool Success { get; }

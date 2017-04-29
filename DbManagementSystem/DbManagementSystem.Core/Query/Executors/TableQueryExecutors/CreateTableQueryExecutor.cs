@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 {
-    class CreateTableQueryExecutor : IQueryExecutor
+    public class CreateTableQueryExecutor : IQueryExecutor
     {
         private static readonly string MATCH = @"^CREATE TABLE (?<tableName>\w+) \((?<columns>[\s\S]+)\)$";
 

@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Query
 {
-    class SqlQuery : IQuery
+    public class SqlQuery : IQuery
     {
         private string query;
 

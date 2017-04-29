@@ -1,6 +1,6 @@
 ﻿namespace DbManagementSystem.Core.Database
 {
-    interface IDatabaseConnection
+    public interface IDatabaseConnection
     {
         IDatabaseConfiguration GetDatabaseConfiguration();
         string GetServerLocation();

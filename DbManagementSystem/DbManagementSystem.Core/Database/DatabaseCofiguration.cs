@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Database
 {
-    class DatabaseCofiguration : IDatabaseConfiguration
+    public class DatabaseCofiguration : IDatabaseConfiguration
     {
         private static readonly Dictionary<string, HashSet<string>> AllowedDataTypes;
         private static readonly Dictionary<string, object> DefaultDataTypeValues;

@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Query.QueryResultSerializers
 {
-    class XmlQueryResultSerializer : IQueryResultSerializer
+    public class XmlQueryResultSerializer : IQueryResultSerializer
     {
         public string Serialize(IQueryResult queryResult)
         {

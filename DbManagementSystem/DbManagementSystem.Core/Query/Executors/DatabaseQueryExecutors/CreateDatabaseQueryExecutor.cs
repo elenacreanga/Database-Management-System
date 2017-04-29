@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 {
-    class CreateDatabaseQueryExecutor : IQueryExecutor
+    public class CreateDatabaseQueryExecutor : IQueryExecutor
     {
         private static readonly string MATCH = @"^CREATE DATABASE (?<databaseName>\w+)$";
 

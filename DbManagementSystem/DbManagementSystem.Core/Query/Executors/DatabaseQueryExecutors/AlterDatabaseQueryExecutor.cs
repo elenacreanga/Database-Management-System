@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 {
-    class AlterDatabaseQueryExecutor : IQueryExecutor
+    public class AlterDatabaseQueryExecutor : IQueryExecutor
     {
         private static readonly string MATCH = @"^ALTER DATABASE (?<databaseName>\w+) RENAME (?<newDatabaseName>\w+)$";
 

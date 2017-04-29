@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DbManagementSystem.Core.Query
 {
-    class SqlQueryResult : IQueryResult
+    public class SqlQueryResult : IQueryResult
     {
         private readonly List<Dictionary<string, object>> result;
 

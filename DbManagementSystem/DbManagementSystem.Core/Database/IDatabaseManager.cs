@@ -2,7 +2,7 @@
 
 namespace DbManagementSystem.Core.Database
 {
-    interface IDatabaseManager
+    public interface IDatabaseManager
     {
         Database GetDatabase(string databaseName);
         IEnumerable<Database> GetDatabaseList();
