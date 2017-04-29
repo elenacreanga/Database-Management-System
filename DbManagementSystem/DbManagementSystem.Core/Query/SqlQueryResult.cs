@@ -27,7 +27,7 @@ namespace DbManagementSystem.Core.Query
 
         public object GetValue(string name)
         {
-            if(this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
+            if (this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
             {
                 this.result[readIndex].TryGetValue(name, out object value);
                 return value;
@@ -48,13 +48,23 @@ namespace DbManagementSystem.Core.Query
 
         public bool Read()
         {
-            if (this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count)
+            if (this.result != null && this.result.Count > 0 && this.readIndex < this.result.Count - 1)
             {
                 this.readIndex++;
                 return true;
             }
 
             return false;
+        }
+
+        public string[] GetColumnNames()
+        {
+            if (this.result != null && this.result.Any())
+            {
+                return this.result.FirstOrDefault().Keys.ToArray();
+            }
+
+            return new string[] { };
         }
     }
 }

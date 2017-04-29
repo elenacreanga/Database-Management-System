@@ -8,5 +8,6 @@
         bool Read();
         object GetValue(string name);
         object GetValue(int index);
+        string[] GetColumnNames();
     }
 }

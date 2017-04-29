@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DbManagementSystem.Core.Database
 {
     public class DatabaseCofiguration : IDatabaseConfiguration
     {
         private static readonly Dictionary<string, HashSet<string>> AllowedDataTypes;
+        private static readonly Dictionary<string, Dictionary<string, Func<object, object, bool>>> OperationFunctions;
         private static readonly Dictionary<string, object> DefaultDataTypeValues;
+        private static readonly Dictionary<string, Func<string, object>> DataTypeParsers;
 
         static DatabaseCofiguration()
         {
@@ -23,26 +27,73 @@ namespace DbManagementSystem.Core.Database
             DefaultDataTypeValues = new Dictionary<string, object>();
             DefaultDataTypeValues["int"] = 0;
             DefaultDataTypeValues["string"] = string.Empty;
+
+            DataTypeParsers = new Dictionary<string, Func<string, object>>();
+            DataTypeParsers["int"] = (value) =>
+            {
+                if (int.TryParse(value, out int result))
+                {
+                    return result;
+                }
+                else
+                {
+                    return DefaultDataTypeValues["int"];
+                }
+            };
+            DataTypeParsers["string"] = (value) => { return string.IsNullOrEmpty(value) ? string.Empty : value.ToString(); };
+
+            OperationFunctions = new Dictionary<string, Dictionary<string, Func<object, object, bool>>>();
+            OperationFunctions["string"] = new Dictionary<string, Func<object, object, bool>>();
+            OperationFunctions["string"]["="] = (l, r) => { return l.ToString() == r.ToString(); };
+            OperationFunctions["string"]["!="] = (l, r) => { return l.ToString() != r.ToString(); };
+            OperationFunctions["int"] = new Dictionary<string, Func<object, object, bool>>();
+            OperationFunctions["int"]["="] = (l, r) => { return (int)l == (int)r; };
+            OperationFunctions["int"]["!="] = (l, r) => { return (int)l != (int)r; };
+            OperationFunctions["int"]["<"] = (l, r) => { return (int)l < (int)r; };
+            OperationFunctions["int"]["<="] = (l, r) => { return (int)l <= (int)r; };
+            OperationFunctions["int"][">"] = (l, r) => { return (int)l > (int)r; };
+            OperationFunctions["int"][">="] = (l, r) => { return (int)l >= (int)r; };
         }
 
         public bool IsDataTypeAllowed(string dataType)
         {
-            return AllowedDataTypes.ContainsKey(dataType);
+            return AllowedDataTypes.ContainsKey(dataType.ToLower());
         }
 
         public bool IsOperatorAllowedForDataType(string dataType, string op)
         {
-            return AllowedDataTypes.ContainsKey(dataType) && AllowedDataTypes[dataType].Contains(op);
+            return AllowedDataTypes.ContainsKey(dataType.ToLower()) && AllowedDataTypes[dataType.ToLower()].Contains(op);
         }
 
         public object GetDefaultValueForDataType(string dataType)
         {
-            if (DefaultDataTypeValues.TryGetValue(dataType, out object value))
+            if (DefaultDataTypeValues.TryGetValue(dataType.ToLower(), out object value))
             {
                 return value;
             }
 
             return null;
+        }
+
+        public List<string> GetAllowedOperators()
+        {
+            var operators = new HashSet<string>();
+            foreach (var dataType in AllowedDataTypes.Keys)
+            {
+                operators.UnionWith(AllowedDataTypes[dataType]);
+            }
+
+            return operators.OrderByDescending(o => o.Length).ToList();
+        }
+
+        public object ParseDataTypeValue(string dataType, string value)
+        {
+            return DataTypeParsers[dataType.ToLower()].Invoke(value);
+        }
+
+        public bool PerformOperation(string dataType, object leftOperand, object rightOperand, string op)
+        {
+            return OperationFunctions[dataType][op].Invoke(leftOperand, rightOperand);
         }
     }
 }

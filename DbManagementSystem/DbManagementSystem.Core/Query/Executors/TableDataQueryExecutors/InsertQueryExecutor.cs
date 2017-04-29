@@ -12,7 +12,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
 
         public bool MatchesQuery(IQuery query)
         {
-            throw new NotImplementedException();
+            return false;
         }
     }
 }

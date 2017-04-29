@@ -52,6 +52,8 @@
     <Compile Include="Database\TableImporters\CsvTableImporter.cs" />
     <Compile Include="Database\TableImporters\XmlTableImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Clauses\IWhereClause.cs" />
+    <Compile Include="Query\Clauses\WhereClause.cs" />
     <Compile Include="Query\Executors\DatabaseQueryExecutors\AlterDatabaseQueryExecutor.cs" />
     <Compile Include="Query\Executors\DatabaseQueryExecutors\CreateDatabaseQueryExecutor.cs" />
     <Compile Include="Query\Executors\DatabaseQueryExecutors\DeleteDatabaseQueryExecutor.cs" />
