@@ -1,5 +1,6 @@
 ﻿using DbManagementSystem.Core.Query;
 using System;
+using System.Collections.Generic;
 
 namespace DbManagementSystem.Console
 {
@@ -11,29 +12,8 @@ namespace DbManagementSystem.Console
 
             var runner = new IntegrationTestsRunner();
 
-            var result = runner.CreateDatabase("school");
+            var result = runner.CreateDatabase("schoolDb");
             PrintResult(result);
-
-            result = runner.CreateDatabase("university");
-            PrintResult(result);
-
-            result = runner.DeleteDatabase("university");
-            PrintResult(result);
-
-            result = runner.AlterDatabase("school", "schoolDb");
-            PrintResult(result);
-
-            //result = runner.CreateTable("schoolDb", "students", "firstName:string,grade:int,height:int");
-            //PrintResult(result);
-
-            //result = runner.AlterTable("schoolDb", "students", "ADD", "lastName:string");
-            //PrintResult(result);
-
-            //result = runner.AlterTable("schoolDb", "students", "REMOVE", "height");
-            //PrintResult(result);
-
-            //result = runner.DeleteTable("schoolDb", "students");
-            //PrintResult(result);
 
             result = runner.ExecuteQuery("CREATE TABLE students (Id:int,FirstName:string,LastName:string,Grade:int)", "schoolDb");
             PrintResult(result);
@@ -41,7 +21,52 @@ namespace DbManagementSystem.Console
             result = runner.ExecuteQuery("CREATE TABLE objects (Name:string,Points:int)", "schoolDb");
             PrintResult(result);
 
-            result = runner.ExecuteQuery("SELECT * FROM students WHERE Id>0 AND Id<2 OR Grade>9 AND Id>=2 AND FirstName!='Vasile' ", "schoolDb");
+            var firstNames = new List<string>()
+            {
+                "Vasile","Ion","Gheorghe","Nicolai","Elena","Stefan","Alexandra", "Mihai", "Maria", "Ana"
+            };
+
+            var lastNames = new List<string>()
+            {
+                "Pojoga","Munteanu","Herta","Ailenei","Creanga","Stan","Budescu", "Apostol", "Mironica", "Velea"
+            };
+
+            var grades = new List<int>()
+            {
+                9,4,8,7,10,9,3,2,8,10
+            };
+
+            for (var i = 0; i < 10; i++)
+            {
+                result = runner.ExecuteQuery(string.Format("INSERT INTO students(Id,FirstName,LastName,Grade) VALUES({0},'{1}','{2}',{3})", i + 1, firstNames[i], lastNames[i], grades[i]), "schoolDb");
+                PrintResult(result);
+            }
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("SELECT * FROM students WHERE Id>0 AND Id<2 OR Grade>9 AND Id>=2 AND FirstName!='Vasile'", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("DELETE FROM students WHERE Id=1 OR Id>=8", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("UPDATE students SET Grade=5 WHERE Grade<5", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("UPDATE students SET Grade=5,LastName='Failed' WHERE Grade<5 OR FirstName='Vasile'", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            PrintResult(result);
+
+            result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
 
             System.Console.ReadKey();
@@ -55,6 +80,7 @@ namespace DbManagementSystem.Console
                 System.Console.WriteLine(string.Format("Rows Affected: {0}\nMessage: {1}", result.RowsAffected, result.Message));
                 System.Console.ResetColor();
                 PrintResultData(result);
+                System.Console.WriteLine();
             }
             else
             {
@@ -70,7 +96,7 @@ namespace DbManagementSystem.Console
             var columns = result.GetColumnNames();
             foreach (var column in columns)
             {
-                System.Console.Write(string.Format("{0}\t\t|", column));
+                System.Console.Write(string.Format("|{0}|", column));
             }
 
             System.Console.WriteLine();
@@ -78,7 +104,7 @@ namespace DbManagementSystem.Console
             {
                 foreach (var column in columns)
                 {
-                    System.Console.Write(string.Format("{0}\t\t|", result.GetValue(column)));
+                    System.Console.Write(string.Format("|{0}|", result.GetValue(column)));
                 }
 
                 System.Console.WriteLine();

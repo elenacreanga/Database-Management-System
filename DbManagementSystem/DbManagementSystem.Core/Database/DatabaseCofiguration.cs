@@ -37,7 +37,7 @@ namespace DbManagementSystem.Core.Database
                 }
                 else
                 {
-                    return DefaultDataTypeValues["int"];
+                    throw new Exception(string.Format("Invalid value for int: '{0}'", value));
                 }
             };
             DataTypeParsers["string"] = (value) => { return string.IsNullOrEmpty(value) ? string.Empty : value.ToString(); };
