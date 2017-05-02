@@ -5,6 +5,5 @@
         IDatabaseConfiguration GetDatabaseConfiguration();
         string GetServerLocation();
         string GetDatabaseName();
-        string GetTableName();
     }
 }

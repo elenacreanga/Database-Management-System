@@ -60,7 +60,7 @@ namespace DbManagementSystem.Console
 
         public IQueryResult ExecuteQuery(string rawQuery, string databaseName = null, string tableName = null)
         {
-            IDatabaseConnection databaseConnection = new DatabaseConnection(this.databaseConfiguration, ServerLocation, databaseName, tableName);
+            IDatabaseConnection databaseConnection = new DatabaseConnection(this.databaseConfiguration, ServerLocation, databaseName);
             IQuery query = new SqlQuery(rawQuery);
             return queryExecutor.Execute(databaseConnection, query);
         }

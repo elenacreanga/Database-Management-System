@@ -7,14 +7,12 @@ namespace DbManagementSystem.Core.Database
         private readonly IDatabaseConfiguration databaseConfiguration;
         private readonly string serverLocation;
         private readonly string databaseName;
-        private readonly string tableName;
 
-        public DatabaseConnection(IDatabaseConfiguration databaseConfiguration, string serverLocation, string databaseName = null, string tableName = null)
+        public DatabaseConnection(IDatabaseConfiguration databaseConfiguration, string serverLocation, string databaseName = null)
         {
             this.databaseConfiguration = databaseConfiguration;
             this.serverLocation = serverLocation ?? string.Empty;
-            this.databaseName = databaseName ?? string.Empty;
-            this.tableName = tableName ?? string.Empty;
+            this.databaseName = databaseName ?? string.Empty;            
         }
 
         public IDatabaseConfiguration GetDatabaseConfiguration()
@@ -30,11 +28,6 @@ namespace DbManagementSystem.Core.Database
         public string GetDatabaseName()
         {
             return this.databaseName;
-        }
-
-        public string GetTableName()
-        {
-            return this.tableName;
-        }
+        }        
     }
 }

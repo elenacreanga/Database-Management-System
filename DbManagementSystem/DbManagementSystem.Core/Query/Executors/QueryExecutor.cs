@@ -78,13 +78,6 @@ namespace DbManagementSystem.Core.Query.Executors
                 return false;
             }
 
-            if (!string.IsNullOrWhiteSpace(databaseConnection.GetDatabaseName())
-                && !string.IsNullOrWhiteSpace(databaseConnection.GetTableName())
-                && !File.Exists(databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + databaseConnection.GetTableName()))
-            {
-                return false;
-            }
-
             return true;
         }
 
