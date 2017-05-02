@@ -70,7 +70,7 @@ namespace DbManagementSystem.Core.Database
             var databaseLocation = this.databaseConnection.GetServerLocation() + "/" + databaseName;
             if (Directory.Exists(databaseLocation))
             {
-                return Directory.EnumerateFiles(databaseLocation).Select(tableName => GetDatabaseTable(databaseName, tableName));
+                return Directory.EnumerateFiles(databaseLocation).Select(tablePath => GetDatabaseTable(databaseName, new FileInfo(tablePath).Name));
             }
 
             return null;

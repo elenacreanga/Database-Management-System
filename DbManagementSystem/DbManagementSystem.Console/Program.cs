@@ -1,4 +1,5 @@
-﻿using DbManagementSystem.Core.Query;
+﻿using DbManagementSystem.Core.Database;
+using DbManagementSystem.Core.Query;
 using System;
 using System.Collections.Generic;
 
@@ -68,6 +69,10 @@ namespace DbManagementSystem.Console
 
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
+
+            var manager = new DatabaseManager(new DatabaseConnection(new DatabaseCofiguration(), @"C:\Users\vasea\Desktop\DatabaseWorkspace"));
+            var tables = manager.GetDatabaseTableList("schoolDb");
+            var x = manager.GetDatabaseTable("schoolDb", "students");
 
             System.Console.ReadKey();
         }
