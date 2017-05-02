@@ -45,7 +45,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 
             try
             {
-                File.WriteAllText(tableLocation, rawColumns);
+                File.WriteAllText(tableLocation, string.Format("{0}\n", rawColumns));
                 return new SqlQueryResult(0, true, "Table successfully created", null);
             }
             catch (Exception exception)
