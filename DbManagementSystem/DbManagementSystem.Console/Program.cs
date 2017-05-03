@@ -1,4 +1,5 @@
 ﻿using DbManagementSystem.Core.Database;
+using DbManagementSystem.Core.Database.TableImporters;
 using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.QueryResultSerializers;
 using System;
@@ -10,7 +11,6 @@ namespace DbManagementSystem.Console
     {
         static void Main(string[] args)
         {
-            Test();
             AddMockData();
             var commandLine = new CommandLine();
             commandLine.Run();
@@ -124,14 +124,26 @@ namespace DbManagementSystem.Console
 
             result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
             IQueryResultSerializer serializer = new CsvQueryResultSerializer();
-            System.Console.WriteLine(serializer.Serialize(result));
+            var csv = serializer.Serialize(result);
+            System.Console.WriteLine(csv);
 
             result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
             serializer = new XmlQueryResultSerializer();
-            System.Console.WriteLine(serializer.Serialize(result));
+            var xml = serializer.Serialize(result);
+            System.Console.WriteLine(xml);
 
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
+
+            var databaseConnection = new DatabaseConnection(new DatabaseCofiguration(), @"C:\Users\vasea\Desktop\DatabaseWorkspace", "schoolDb");
+
+            ITableImporter importer = new CsvTableImporter();
+            var success = importer.Import(databaseConnection, "students", csv);
+            System.Console.WriteLine(string.Format("Import from csv: {0}", success));
+
+            importer = new XmlTableImporter();
+            success = importer.Import(databaseConnection, "students", xml);
+            System.Console.WriteLine(string.Format("Import from xml: {0}", success));
 
             System.Console.ReadKey();
         }

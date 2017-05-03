@@ -2,6 +2,6 @@
 {
     public interface ITableImporter
     {
-        bool Import(IDatabaseConnection databaseConnection, string data);
+        bool Import(IDatabaseConnection databaseConnection, string tableName, string data);
     }
 }

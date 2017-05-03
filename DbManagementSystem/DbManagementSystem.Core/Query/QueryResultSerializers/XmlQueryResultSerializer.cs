@@ -20,7 +20,7 @@ namespace DbManagementSystem.Core.Query.QueryResultSerializers
                 xml = string.Format("{0}\n<Row>{1}</Row>", xml, row.Substring(1));
             }
 
-            return xml;
+            return string.Format("<Data>{0}</Data>", xml);
         }
     }
 }
