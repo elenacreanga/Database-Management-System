@@ -6,7 +6,21 @@ namespace DbManagementSystem.Core.Query.QueryResultSerializers
     {
         public string Serialize(IQueryResult queryResult)
         {
-            throw new NotImplementedException();
+            var columns = queryResult.GetColumnNames();
+            var xml = string.Empty;
+
+            while (queryResult.Read())
+            {
+                var row = string.Empty;
+                foreach (var column in columns)
+                {
+                    row = string.Format("{0}\n<{1}>{2}</{1}>", row, column, queryResult.GetValue(column));
+                }
+
+                xml = string.Format("{0}\n<Row>{1}</Row>", xml, row.Substring(1));
+            }
+
+            return xml;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using DbManagementSystem.Core.Database;
 using DbManagementSystem.Core.Query;
+using DbManagementSystem.Core.Query.QueryResultSerializers;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +10,7 @@ namespace DbManagementSystem.Console
     {
         static void Main(string[] args)
         {
+            Test();
             AddMockData();
             var commandLine = new CommandLine();
             commandLine.Run();
@@ -119,6 +121,14 @@ namespace DbManagementSystem.Console
 
             result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
             PrintResult(result);
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            IQueryResultSerializer serializer = new CsvQueryResultSerializer();
+            System.Console.WriteLine(serializer.Serialize(result));
+
+            result = runner.ExecuteQuery("SELECT * FROM students", "schoolDb");
+            serializer = new XmlQueryResultSerializer();
+            System.Console.WriteLine(serializer.Serialize(result));
 
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
