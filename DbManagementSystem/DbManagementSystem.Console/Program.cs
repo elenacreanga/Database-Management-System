@@ -9,8 +9,61 @@ namespace DbManagementSystem.Console
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("----Database Management System Console----");
+            AddMockData();
+            var commandLine = new CommandLine();
+            commandLine.Run();
+        }
 
+        private static void AddMockData()
+        {
+            var runner = new IntegrationTestsRunner();
+            runner.DeleteDatabase("schoolDb");
+            runner.CreateDatabase("schoolDb");
+            runner.ExecuteQuery("CREATE TABLE students (Id:int,FirstName:string,LastName:string,Grade:int)", "schoolDb");
+            runner.ExecuteQuery("CREATE TABLE objects (Id:int,Name:string,TeacherName:string,Language:string)", "schoolDb");
+            var firstNames = new List<string>()
+            {
+                "Vasile","Ion","Gheorghe","Nicolai","Elena","Stefan","Alexandra", "Mihai", "Maria", "Ana"
+            };
+
+            var lastNames = new List<string>()
+            {
+                "Pojoga","Munteanu","Herta","Ailenei","Creanga","Stan","Budescu", "Apostol", "Mironica", "Velea"
+            };
+
+            var grades = new List<int>()
+            {
+                9,4,8,7,10,9,3,2,8,10
+            };
+
+            for (var i = 0; i < 10; i++)
+            {
+                runner.ExecuteQuery(string.Format("INSERT INTO students(Id,FirstName,LastName,Grade) VALUES({0},'{1}','{2}',{3})", i + 1, firstNames[i], lastNames[i], grades[i]), "schoolDb");
+            }
+
+            var objectNames = new List<string>()
+            {
+                "Math","Computer Science","History","Business","Biology","Chemistry","Phisics", "Literatre", "Algorithms", "Sport"
+            };
+
+            var teacherName = new List<string>()
+            {
+                "Ion Neculce","Ion Creanga","Herta Gheorghe","Tudorel Toader","Dorel Lucanu","Vlad Radulescu","Valeriu Baltag", "Apostol Sergiu", "Mironica Maria", "Velea Alex"
+            };
+
+            var language = new List<string>()
+            {
+                "English","Romanian","Russia","French","English","Romanian","German","Spanish","English","Romanian"
+            };
+
+            for (var i = 0; i < 10; i++)
+            {
+                runner.ExecuteQuery(string.Format("INSERT INTO objects(Id,Name,TeacherName,Language) VALUES({0},'{1}','{2}','{3}')", i + 1, objectNames[i], teacherName[i], language[i]), "schoolDb");
+            }
+        }
+
+        private static void Test()
+        {
             var runner = new IntegrationTestsRunner();
 
             var result = runner.CreateDatabase("schoolDb");
@@ -69,10 +122,6 @@ namespace DbManagementSystem.Console
 
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
-
-            var manager = new DatabaseManager(new DatabaseConnection(new DatabaseCofiguration(), @"C:\Users\vasea\Desktop\DatabaseWorkspace"));
-            var tables = manager.GetDatabaseTableList("schoolDb");
-            var x = manager.GetDatabaseTable("schoolDb", "students");
 
             System.Console.ReadKey();
         }

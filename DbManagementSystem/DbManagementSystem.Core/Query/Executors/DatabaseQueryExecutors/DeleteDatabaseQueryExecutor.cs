@@ -27,7 +27,7 @@ namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 
             try
             {
-                Directory.Delete(databaseLocation);
+                Directory.Delete(databaseLocation, true);
                 return new SqlQueryResult(0, true, "Database successfully deleted", null);
             }
             catch (Exception exception)
