@@ -117,144 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;queryButton.Name" xml:space="preserve">
-    <value>queryButton</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>817, 650</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;NewTableButton.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="Home.Text" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="Home.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 22</value>
-  </data>
-  <data name="&gt;&gt;container.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;Home.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;Home.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="container.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>MainForm</value>
-  </data>
-  <data name="newDbButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 23</value>
-  </data>
-  <data name="NewTableButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>609, 67</value>
-  </data>
-  <data name="&gt;&gt;NewTableButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="newDbButton.Text" xml:space="preserve">
-    <value>New Database</value>
-  </data>
-  <data name="&gt;&gt;newDbButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;NewTableButton.Name" xml:space="preserve">
-    <value>NewTableButton</value>
-  </data>
-  <data name="newDbButton.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="container.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 117</value>
-  </data>
-  <data name="NewTableButton.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;container.Name" xml:space="preserve">
-    <value>container</value>
-  </data>
-  <data name="&gt;&gt;container.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;container.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="queryButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 64</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="Home.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 24</value>
-  </data>
-  <data name="&gt;&gt;Home.Name" xml:space="preserve">
-    <value>Home</value>
-  </data>
-  <data name="&gt;&gt;Home.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;newDbButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;queryButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;newDbButton.Name" xml:space="preserve">
-    <value>newDbButton</value>
-  </data>
-  <data name="container.Size" type="System.Drawing.Size, System.Drawing">
-    <value>608, 521</value>
-  </data>
-  <data name="NewTableButton.Text" xml:space="preserve">
-    <value>New Table</value>
-  </data>
-  <data name="&gt;&gt;newDbButton.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;NewTableButton.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="newDbButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>102, 68</value>
-  </data>
-  <data name="queryButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 27</value>
-  </data>
-  <data name="&gt;&gt;queryButton.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;queryButton.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="queryButton.Text" xml:space="preserve">
-    <value>Query</value>
-  </data>
-  <data name="queryButton.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Db Manager</value>
-  </data>
-  <data name="NewTableButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>101, 24</value>
-  </data>
-  <data name="Home.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="columnName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>dje</value>
+  <metadata name="columnType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="columnCancel.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="columnName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="columnType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="columnCancel.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
   </metadata>
 </root>
