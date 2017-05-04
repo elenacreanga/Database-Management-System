@@ -21,7 +21,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 
             var tableName = match.Groups["tableName"].Value;
             var tableLocation = databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + tableName;
-            if (File.Exists(tableLocation))
+            if (databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Table already exists: --{0}--", sqlQuery), null);
             }
@@ -45,7 +45,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 
             try
             {
-                File.WriteAllText(tableLocation, string.Format("{0}\n", rawColumns));
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.WriteAllText(tableLocation, string.Format("{0}\n", rawColumns));
                 return new SqlQueryResult(0, true, "Table successfully created", null);
             }
             catch (Exception exception)

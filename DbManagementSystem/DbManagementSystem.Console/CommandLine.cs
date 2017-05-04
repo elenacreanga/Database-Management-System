@@ -14,7 +14,7 @@ namespace DbManagementSystem.Console
 
         public CommandLine()
         {
-            this.databaseConfiguration = new DatabaseCofiguration();
+            this.databaseConfiguration = new DatabaseCofiguration(new DatabaseStorageService());
             this.queryExecutor = new QueryExecutor();
             this.databaseConnection = new DatabaseConnection(this.databaseConfiguration, ServerLocation);
         }

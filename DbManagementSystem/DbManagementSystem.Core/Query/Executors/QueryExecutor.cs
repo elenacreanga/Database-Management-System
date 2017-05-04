@@ -49,7 +49,7 @@ namespace DbManagementSystem.Core.Query.Executors
                         {
                             return queryExecutor.Execute(databaseConnection, query);
                         }
-                        catch(Exception exception)
+                        catch (Exception exception)
                         {
                             return new SqlQueryResult(0, false, string.Format("An error occured: --{0}--", exception.Message), null);
                         }
@@ -67,13 +67,13 @@ namespace DbManagementSystem.Core.Query.Executors
         private bool IsValidDatabaseConnection(IDatabaseConnection databaseConnection)
         {
             if (string.IsNullOrWhiteSpace(databaseConnection.GetServerLocation())
-                || !Directory.Exists(databaseConnection.GetServerLocation()))
+                || !databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseConnection.GetServerLocation()))
             {
                 return false;
             }
 
             if (!string.IsNullOrWhiteSpace(databaseConnection.GetDatabaseName())
-                && !Directory.Exists(databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName()))
+                && !databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName()))
             {
                 return false;
             }

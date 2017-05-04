@@ -23,7 +23,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
 
             var tableName = match.Groups["tableName"].Value;
             var tableLocation = databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + tableName;
-            if (!File.Exists(tableLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Table does not exist: --{0}--", sqlQuery), null);
             }
@@ -43,7 +43,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
             }
 
             var columnsToUpdate = rawColumnsToUpdate.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).ToDictionary(k => k.Split('=')[0].Trim(), v => v.Split('=')[1].Trim());
-            var tableData = File.ReadAllLines(tableLocation);
+            var tableData = databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ReadAllLines(tableLocation);
             var orderedTableColumns = tableData.FirstOrDefault().Split(',').ToList();
             var tableColumns = orderedTableColumns.ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1]);
             foreach (var columnName in columnsToUpdate.Keys)
@@ -96,7 +96,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
                 }
             }
 
-            File.WriteAllLines(tableLocation, tableData);
+            databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.WriteAllLines(tableLocation, tableData);
             return new SqlQueryResult(affectedRows, true, "Query successfully executed", null);
         }
 

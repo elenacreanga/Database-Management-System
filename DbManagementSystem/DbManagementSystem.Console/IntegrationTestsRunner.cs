@@ -12,7 +12,7 @@ namespace DbManagementSystem.Console
 
         public IntegrationTestsRunner()
         {
-            this.databaseConfiguration = new DatabaseCofiguration();
+            this.databaseConfiguration = new DatabaseCofiguration(new DatabaseStorageService());
             this.queryExecutor = new QueryExecutor();
         }
 

@@ -23,12 +23,12 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
 
             var tableName = match.Groups["tableName"].Value;
             var tableLocation = databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + tableName;
-            if (!File.Exists(tableLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Table does not exist: --{0}--", sqlQuery), null);
             }
 
-            var tableData = File.ReadAllLines(tableLocation);
+            var tableData = databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ReadAllLines(tableLocation);
             var orderedTableColumns = tableData.FirstOrDefault().Split(',').ToList();
             var tableColumns = orderedTableColumns.ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1]);
             var whereClause = new WhereClause(databaseConnection.GetDatabaseConfiguration());
@@ -54,12 +54,12 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
                 }
             }
 
-            var affectedRows = tableData.Length - updatedTableData.Count;
+            var affectedRows = tableData.Length - updatedTableData.Count - 1;
             var rawTableColumns = tableData.FirstOrDefault();
             var rawTableData = string.Join("\n", updatedTableData.Values);
             try
             {
-                File.WriteAllText(tableLocation, string.Format("{0}\n{1}", rawTableColumns, rawTableData));
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.WriteAllText(tableLocation, string.Format("{0}\n{1}", rawTableColumns, rawTableData));
                 return new SqlQueryResult(affectedRows, true, string.Format("Successfully deleted {0} records.", affectedRows), null);
             }
             catch (Exception exception)

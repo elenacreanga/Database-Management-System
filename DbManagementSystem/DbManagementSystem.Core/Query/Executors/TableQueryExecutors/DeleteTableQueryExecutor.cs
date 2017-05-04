@@ -20,14 +20,14 @@ namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors
 
             var tableName = match.Groups["tableName"].Value;
             var tableLocation = databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + tableName;
-            if (!File.Exists(tableLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Table does not exist: --{0}--", sqlQuery), null);
             }            
 
             try
             {
-                File.Delete(tableLocation);
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.DeleteTable(tableLocation);
                 return new SqlQueryResult(0, true, "Table successfully deleted", null);
             }
             catch (Exception exception)

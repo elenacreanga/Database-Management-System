@@ -10,6 +10,15 @@ namespace DbManagementSystem.Core.Database
         private static readonly Dictionary<string, Dictionary<string, Func<object, object, bool>>> OperationFunctions;
         private static readonly Dictionary<string, object> DefaultDataTypeValues;
         private static readonly Dictionary<string, Func<string, object>> DataTypeParsers;
+        private readonly IDatabaseStorageService databaseStorageService;
+
+        public IDatabaseStorageService DatabaseStorageService
+        {
+            get
+            {
+                return this.databaseStorageService;
+            }
+        }
 
         static DatabaseCofiguration()
         {
@@ -53,6 +62,11 @@ namespace DbManagementSystem.Core.Database
             OperationFunctions["int"]["<="] = (l, r) => { return (int)l <= (int)r; };
             OperationFunctions["int"][">"] = (l, r) => { return (int)l > (int)r; };
             OperationFunctions["int"][">="] = (l, r) => { return (int)l >= (int)r; };
+        }
+
+        public DatabaseCofiguration(IDatabaseStorageService databaseStorageService)
+        {
+            this.databaseStorageService = databaseStorageService;
         }
 
         public bool IsDataTypeAllowed(string dataType)

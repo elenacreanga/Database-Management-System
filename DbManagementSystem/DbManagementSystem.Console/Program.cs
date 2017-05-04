@@ -135,7 +135,7 @@ namespace DbManagementSystem.Console
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
 
-            var databaseConnection = new DatabaseConnection(new DatabaseCofiguration(), @"C:\Users\vasea\Desktop\DatabaseWorkspace", "schoolDb");
+            var databaseConnection = new DatabaseConnection(new DatabaseCofiguration(new DatabaseStorageService()), @"C:\Users\vasea\Desktop\DatabaseWorkspace", "schoolDb");
 
             ITableImporter importer = new CsvTableImporter();
             var success = importer.Import(databaseConnection, "students", csv);

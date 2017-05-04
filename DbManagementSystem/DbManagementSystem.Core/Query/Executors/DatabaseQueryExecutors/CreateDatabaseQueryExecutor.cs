@@ -20,14 +20,14 @@ namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 
             var databaseName = match.Groups["databaseName"].Value;
             var databaseLocation = databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (Directory.Exists(databaseLocation))
+            if (databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Database already exists: --{0}--", sqlQuery), null);
             }
 
             try
             {
-                Directory.CreateDirectory(databaseLocation);
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.CreateDatabase(databaseLocation);
                 return new SqlQueryResult(0, true, "Database successfully created", null);
             }
             catch (Exception exception)

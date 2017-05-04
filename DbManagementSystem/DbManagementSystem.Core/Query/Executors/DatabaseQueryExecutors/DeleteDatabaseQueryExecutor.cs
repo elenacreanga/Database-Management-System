@@ -20,14 +20,14 @@ namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
 
             var databaseName = match.Groups["databaseName"].Value;
             var databaseLocation = databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (!Directory.Exists(databaseLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Database does not exist: --{0}--", sqlQuery), null);
             }
 
             try
             {
-                Directory.Delete(databaseLocation, true);
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.DeleteDatabase(databaseLocation);
                 return new SqlQueryResult(0, true, "Database successfully deleted", null);
             }
             catch (Exception exception)

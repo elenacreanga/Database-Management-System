@@ -17,7 +17,7 @@ namespace DbManagementSystem.Core.Database
         public Database GetDatabase(string databaseName)
         {
             var databaseLocation = this.databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (Directory.Exists(databaseLocation))
+            if (this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
                 return new Database
                 {
@@ -31,24 +31,23 @@ namespace DbManagementSystem.Core.Database
 
         public IEnumerable<Database> GetDatabaseList()
         {
-            var directory = new DirectoryInfo(databaseConnection.GetServerLocation());
-            var directories = directory.GetDirectories();
-            return directories.Select(d => new Database
-            {
-                Location = databaseConnection.GetServerLocation() + "/" + d.Name,
-                Name = d.Name
-            });
+            return this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.GetDatabases(databaseConnection.GetServerLocation())
+                                    .Select(database => new Database
+                                    {
+                                        Location = databaseConnection.GetServerLocation() + "/" + database,
+                                        Name = database
+                                    });
         }
 
         public Table GetDatabaseTable(string databaseName, string tableName)
         {
             var databaseLocation = this.databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (Directory.Exists(databaseLocation))
+            if (this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
                 var tableLocation = databaseLocation + "/" + tableName;
-                if (File.Exists(tableLocation))
+                if (this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
                 {
-                    var columns = File.ReadLines(tableLocation).FirstOrDefault();
+                    var columns = this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ReadLines(tableLocation).FirstOrDefault();
                     if (columns != null)
                     {
                         return new Table
@@ -68,9 +67,9 @@ namespace DbManagementSystem.Core.Database
         public IEnumerable<Table> GetDatabaseTableList(string databaseName)
         {
             var databaseLocation = this.databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (Directory.Exists(databaseLocation))
+            if (this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
-                return Directory.EnumerateFiles(databaseLocation).Select(tablePath => GetDatabaseTable(databaseName, new FileInfo(tablePath).Name));
+                return this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.EnumerateTables(databaseLocation).Select(tablePath => GetDatabaseTable(databaseName, new FileInfo(tablePath).Name));
             }
 
             return null;

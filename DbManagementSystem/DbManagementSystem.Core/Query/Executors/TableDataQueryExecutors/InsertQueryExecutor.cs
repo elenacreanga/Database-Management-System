@@ -23,7 +23,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
 
             var tableName = match.Groups["tableName"].Value;
             var tableLocation = databaseConnection.GetServerLocation() + "/" + databaseConnection.GetDatabaseName() + "/" + tableName;
-            if (!File.Exists(tableLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsTable(tableLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Table does not exist: --{0}--", sqlQuery), null);
             }
@@ -34,7 +34,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
                 return new SqlQueryResult(0, false, string.Format("Invalid columns: --{0}--", sqlQuery), null);
             }
 
-            var orderedTableColumns = File.ReadLines(tableLocation).FirstOrDefault().Split(',').ToList();
+            var orderedTableColumns = databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ReadLines(tableLocation).FirstOrDefault().Split(',').ToList();
             var tableColumns = orderedTableColumns.ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1]);
             foreach (var columnName in columns)
             {
@@ -90,7 +90,7 @@ namespace DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors
             }
 
             rowData = string.Format("{0}\n", rowData.Substring(1));
-            File.AppendAllText(tableLocation, rowData);
+            databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.AppendAllText(tableLocation, rowData);
             return new SqlQueryResult(1, true, "Record successfully inserted", null);
         }
 

@@ -21,20 +21,20 @@ namespace DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors
             var databaseName = match.Groups["databaseName"].Value;
             var newDatabaseName = match.Groups["newDatabaseName"].Value;
             var databaseLocation = databaseConnection.GetServerLocation() + "/" + databaseName;
-            if (!Directory.Exists(databaseLocation))
+            if (!databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(databaseLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Database does not exist: --{0}--", sqlQuery), null);
             }
 
             var newDatabaseLocation = databaseConnection.GetServerLocation() + "/" + newDatabaseName;
-            if (Directory.Exists(newDatabaseLocation))
+            if (databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.ExistsDatabase(newDatabaseLocation))
             {
                 return new SqlQueryResult(0, false, string.Format("Database already exists: --{0}--", sqlQuery), null);
             }
 
             try
             {
-                Directory.Move(databaseLocation, newDatabaseLocation);
+                databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.MoveDatabase(databaseLocation, newDatabaseLocation);
                 return new SqlQueryResult(0, true, "Database successfully renamed", null);
             }
             catch (Exception exception)
