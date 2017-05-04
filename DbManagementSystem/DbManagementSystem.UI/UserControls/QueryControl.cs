@@ -300,13 +300,21 @@ namespace DbManagementSystem.UI.UserControls
         {
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                string readText = File.ReadAllText(openFileDialog1.FileName);
-                if (readText != String.Empty)
+                ITableImporter importer;
+                if (openFileDialog1.FileName.EndsWith("csv", StringComparison.OrdinalIgnoreCase))
                 {
-                   
-                    ITableImporter importer = new CsvTableImporter();
-                    var success = importer.Import(_runner.GetConn(), tableComboBox.Text, readText);
-                    MessageBox.Show(readText);
+                    importer = new CsvTableImporter();
+                }
+                else
+                {
+                    importer = new XmlTableImporter();
+                }
+
+                string data = File.ReadAllText(openFileDialog1.FileName);
+                if (!string.IsNullOrWhiteSpace(data))
+                {
+                    var success = importer.Import(_runner.GetConn(dbComboBox.Text), tableComboBox.Text, data);
+                    MessageBox.Show(data);
                 }
                 else
                 {

@@ -8,7 +8,7 @@ namespace DbManagementSystem.Core.Database.TableImporters
     {
         public bool Import(IDatabaseConnection databaseConnection, string tableName, string data)
         {
-            var rows = data.Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+            var rows = data.Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
             if (rows.Length < 1)
             {
                 return false;

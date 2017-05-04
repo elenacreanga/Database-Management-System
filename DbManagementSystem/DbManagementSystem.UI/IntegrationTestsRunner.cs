@@ -90,9 +90,9 @@ namespace DbManagementSystem.UI
             return databaseManager.GetDatabaseTable(databaseName,tableName);
         }
 
-        public IDatabaseConnection GetConn()
+        public IDatabaseConnection GetConn(string databaseName)
         {
-            return  new DatabaseConnection(this.databaseConfiguration, ServerLocation);
+            return  new DatabaseConnection(this.databaseConfiguration, ServerLocation, databaseName);
         }
 
     }

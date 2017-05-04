@@ -24,7 +24,7 @@ namespace DbManagementSystem.Core.Database.TableImporters
             {
                 var columnNames = new List<string>();
                 var columnValues = new List<string>();
-                var columns = rows[i].Split(new[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                var columns = rows[i].Split(new[] { "\r\n", "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 foreach (var column in columns)
                 {
