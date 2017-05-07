@@ -2,15 +2,16 @@
 using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.Executors;
 using System;
+using DbManagementSystem.Core;
 
 namespace DbManagementSystem.Console
 {
     class CommandLine
     {
-        private static readonly string ServerLocation = @"C:\Users\vasea\Desktop\DatabaseWorkspace";
         private readonly IDatabaseConfiguration databaseConfiguration;
         private readonly IQueryExecutor queryExecutor;
         private IDatabaseConnection databaseConnection;
+        private readonly string ServerLocation = Constants.ServerLocation;
 
         public CommandLine()
         {

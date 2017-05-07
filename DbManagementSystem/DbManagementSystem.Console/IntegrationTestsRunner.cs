@@ -1,4 +1,5 @@
-﻿using DbManagementSystem.Core.Database;
+﻿using DbManagementSystem.Core;
+using DbManagementSystem.Core.Database;
 using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.Executors;
 
@@ -6,7 +7,7 @@ namespace DbManagementSystem.Console
 {
     class IntegrationTestsRunner
     {
-        private static readonly string ServerLocation = @"C:\Users\vasea\Desktop\DatabaseWorkspace";
+        private static readonly string ServerLocation = Constants.ServerLocation;
         private readonly IDatabaseConfiguration databaseConfiguration;
         private readonly IQueryExecutor queryExecutor;
 

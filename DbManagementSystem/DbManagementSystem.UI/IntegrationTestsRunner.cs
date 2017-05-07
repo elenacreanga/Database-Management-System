@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using DbManagementSystem.Core;
 using DbManagementSystem.Core.Database;
 using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.Executors;
 
 namespace DbManagementSystem.UI
 {
-   public class IntegrationTestsRunner
+    public class IntegrationTestsRunner
     {
-        private static readonly string ServerLocation = @"C:\Users\vasea\Desktop\DatabaseWorkspace";
+        private static readonly string ServerLocation = Constants.ServerLocation;
         private readonly IDatabaseConfiguration databaseConfiguration;
         private readonly IQueryExecutor queryExecutor;
 
@@ -58,7 +59,7 @@ namespace DbManagementSystem.UI
             IQuery query = new SqlQuery("ALTER TABLE :tableName :action COLUMNS (:columns)").SetParameter("tableName", tableName).SetParameter("action", action).SetParameter("columns", columns);
             return queryExecutor.Execute(databaseConnection, query);
         }
-        
+
 
         public IQueryResult ExecuteQuery(string rawQuery, string databaseName = null, string tableName = null)
         {
@@ -83,16 +84,16 @@ namespace DbManagementSystem.UI
             return databaseManager.GetDatabaseTableList(databaseName);
         }
 
-        public Table  GetTable(string databaseName, string tableName)
+        public Table GetTable(string databaseName, string tableName)
         {
             IDatabaseConnection databaseConnection = new DatabaseConnection(this.databaseConfiguration, ServerLocation);
             DatabaseManager databaseManager = new DatabaseManager(databaseConnection);
-            return databaseManager.GetDatabaseTable(databaseName,tableName);
+            return databaseManager.GetDatabaseTable(databaseName, tableName);
         }
 
         public IDatabaseConnection GetConn(string databaseName)
         {
-            return  new DatabaseConnection(this.databaseConfiguration, ServerLocation, databaseName);
+            return new DatabaseConnection(this.databaseConfiguration, ServerLocation, databaseName);
         }
 
     }

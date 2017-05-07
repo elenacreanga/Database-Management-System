@@ -4,6 +4,7 @@ using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.QueryResultSerializers;
 using System;
 using System.Collections.Generic;
+using DbManagementSystem.Core;
 
 namespace DbManagementSystem.Console
 {
@@ -135,7 +136,7 @@ namespace DbManagementSystem.Console
             result = runner.ExecuteQuery("DELETE FROM students", "schoolDb");
             PrintResult(result);
 
-            var databaseConnection = new DatabaseConnection(new DatabaseCofiguration(new DatabaseStorageService()), @"C:\Users\vasea\Desktop\DatabaseWorkspace", "schoolDb");
+            var databaseConnection = new DatabaseConnection(new DatabaseCofiguration(new DatabaseStorageService()), Constants.ServerLocation, "schoolDb");
 
             ITableImporter importer = new CsvTableImporter();
             var success = importer.Import(databaseConnection, "students", csv);
