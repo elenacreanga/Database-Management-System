@@ -55,10 +55,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\DatabaseConfigurationTest.cs" />
+    <Compile Include="Database\DatabaseConnectionTest.cs" />
+    <Compile Include="Database\DatabaseManagerTest.cs" />
+    <Compile Include="Database\DatabaseStorageServiceTest.cs" />
+    <Compile Include="Database\TableImporters\CsvTableImporterTest.cs" />
+    <Compile Include="Database\TableImporters\XmlTableImporterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DbManagementSystem.Core\DbManagementSystem.Core.csproj">
+      <Project>{C29095D6-AA49-424E-9F8C-3DDD647DBF08}</Project>
+      <Name>DbManagementSystem.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

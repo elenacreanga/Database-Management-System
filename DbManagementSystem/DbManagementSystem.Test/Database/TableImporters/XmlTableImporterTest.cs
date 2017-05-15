@@ -7,11 +7,6 @@ namespace DbManagementSystem.Test.Database.TableImporters
 {
     public class XmlTableImporterTest
     {
-        public XmlTableImporter GetSUT()
-        {
-            return new XmlTableImporter();
-        }
-
         [Fact]
         public void Import_WhenValidData_ShouldReturnTrue()
         {
@@ -32,6 +27,10 @@ namespace DbManagementSystem.Test.Database.TableImporters
             var table = "testTable";
             var result = xmlTableImporter.Import(databaseConnection, table, data);
             Assert.False(result);
+        }
+        private XmlTableImporter GetSUT()
+        {
+            return new XmlTableImporter();
         }
     }
 }

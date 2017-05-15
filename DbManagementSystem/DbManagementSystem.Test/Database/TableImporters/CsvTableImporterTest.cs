@@ -7,28 +7,22 @@ namespace DbManagementSystem.Test.Database.TableImporters
 {
     public class CsvTableImporterTest
     {
-        private CsvTableImporter GetSUT()
-        {
-            return new CsvTableImporter();
-        }
-
         [Fact]
-        public void Import_WhenSuccessful_ShouldReturnTrue()
+        public void Import_WhenDataWithEmptyColumnHeaderButSameColumnDataForRows_ShouldReturnTrue()
         {
             var csvTableImporter = GetSUT();
-            var data = "Nume,Prenume\nPopescu, Maria\nBinculescu, Vasilica\n";
+            var data = "Nume,,,,\nPopescu\n\n";
             var tableName = "testTable";
             var databaseConnection = Substitute.For<IDatabaseConnection>();
-
             var result = csvTableImporter.Import(databaseConnection, tableName, data);
             Assert.True(result);
         }
 
         [Fact]
-        public void Import_WhenDataWithTableHeaderButNoColumn_ShouldReturnFalse()
+        public void Import_WhenDataWithTableHeaderAndLessColumnDataForRows_ShouldReturnFalse()
         {
             var csvTableImporter = GetSUT();
-            var data = "as\n\n\n";
+            var data = "Nume, Prenume\nPopescu\n\n";
             var tableName = "testTable";
             var databaseConnection = Substitute.For<IDatabaseConnection>();
             var result = csvTableImporter.Import(databaseConnection, tableName, data);
@@ -47,25 +41,14 @@ namespace DbManagementSystem.Test.Database.TableImporters
         }
 
         [Fact]
-        public void Import_WhenDataWithTableHeaderAndLessColumnDataForRows_ShouldReturnFalse()
+        public void Import_WhenDataWithTableHeaderButNoColumn_ShouldReturnFalse()
         {
             var csvTableImporter = GetSUT();
-            var data = "Nume, Prenume\nPopescu\n\n";
+            var data = "as\n\n\n";
             var tableName = "testTable";
             var databaseConnection = Substitute.For<IDatabaseConnection>();
             var result = csvTableImporter.Import(databaseConnection, tableName, data);
             Assert.False(result);
-        }
-
-        [Fact]
-        public void Import_WhenDataWithEmptyColumnHeaderButSameColumnDataForRows_ShouldReturnTrue()
-        {
-            var csvTableImporter = GetSUT();
-            var data = "Nume,,,,\nPopescu\n\n";
-            var tableName = "testTable";
-            var databaseConnection = Substitute.For<IDatabaseConnection>();
-            var result = csvTableImporter.Import(databaseConnection, tableName, data);
-            Assert.True(result);
         }
 
         [Fact]
@@ -77,6 +60,23 @@ namespace DbManagementSystem.Test.Database.TableImporters
             var databaseConnection = Substitute.For<IDatabaseConnection>();
             var result = csvTableImporter.Import(databaseConnection, tableName, data);
             Assert.False(result);
+        }
+
+        [Fact]
+        public void Import_WhenSuccessful_ShouldReturnTrue()
+        {
+            var csvTableImporter = GetSUT();
+            var data = "Nume,Prenume\nPopescu, Maria\nBinculescu, Vasilica\n";
+            var tableName = "testTable";
+            var databaseConnection = Substitute.For<IDatabaseConnection>();
+
+            var result = csvTableImporter.Import(databaseConnection, tableName, data);
+            Assert.True(result);
+        }
+
+        private CsvTableImporter GetSUT()
+        {
+            return new CsvTableImporter();
         }
     }
 }
