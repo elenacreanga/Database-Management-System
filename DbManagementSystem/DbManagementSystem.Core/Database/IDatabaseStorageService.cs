@@ -11,6 +11,7 @@ namespace DbManagementSystem.Core.Database
         void WriteAllLines(string path, string[] contents);
         void AppendAllText(string path, string contents);
         void DeleteTable(string path);
+        double GetTableSize(string tableLocation);
         bool ExistsDatabase(string path);
         IEnumerable<string> GetDatabases(string serverLocation);
         IEnumerable<string> EnumerateTables(string path);

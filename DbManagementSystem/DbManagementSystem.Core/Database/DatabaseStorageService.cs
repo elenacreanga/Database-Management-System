@@ -70,6 +70,11 @@ namespace DbManagementSystem.Core.Database
         public void WriteAllLines(string path, string[] contents)
         {
             File.WriteAllLines(path, contents);
-        }        
+        }
+
+        public double GetTableSize(string tableLocation)
+        {
+            return new FileInfo(tableLocation).Length / 1024.0d;
+        }
     }
 }

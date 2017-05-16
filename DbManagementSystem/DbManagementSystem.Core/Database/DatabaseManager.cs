@@ -54,7 +54,7 @@ namespace DbManagementSystem.Core.Database
                         {
                             DatabaseName = databaseName,
                             Name = tableName,
-                            Size = new FileInfo(tableLocation).Length / 1024.0d,
+                            Size = this.databaseConnection.GetDatabaseConfiguration().DatabaseStorageService.GetTableSize(tableLocation),
                             Columns = columns.Split(',').ToDictionary(k => k.Split(':')[0], v => v.Split(':')[1])
                         };
                     }
@@ -63,6 +63,8 @@ namespace DbManagementSystem.Core.Database
 
             return null;
         }
+
+        
 
         public IEnumerable<Table> GetDatabaseTableList(string databaseName)
         {
