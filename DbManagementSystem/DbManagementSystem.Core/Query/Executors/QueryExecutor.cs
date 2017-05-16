@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using DbManagementSystem.Core.Query.Executors.DatabaseQueryExecutors;
 using DbManagementSystem.Core.Query.Executors.TableQueryExecutors;
 using DbManagementSystem.Core.Query.Executors.TableDataQueryExecutors;
-using System.IO;
 
 namespace DbManagementSystem.Core.Query.Executors
 {

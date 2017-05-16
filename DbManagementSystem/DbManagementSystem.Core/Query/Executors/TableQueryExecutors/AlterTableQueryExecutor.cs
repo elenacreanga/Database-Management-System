@@ -1,7 +1,6 @@
 ﻿using System;
 using DbManagementSystem.Core.Database;
 using System.Text.RegularExpressions;
-using System.IO;
 using System.Linq;
 
 namespace DbManagementSystem.Core.Query.Executors.TableQueryExecutors

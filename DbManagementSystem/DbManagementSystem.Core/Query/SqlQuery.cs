@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DbManagementSystem.Core.Query
+﻿namespace DbManagementSystem.Core.Query
 {
     public class SqlQuery : IQuery
     {

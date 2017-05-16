@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DbManagementSystem.Core.Query.QueryResultSerializers
+﻿namespace DbManagementSystem.Core.Query.QueryResultSerializers
 {
     public class XmlQueryResultSerializer : IQueryResultSerializer
     {

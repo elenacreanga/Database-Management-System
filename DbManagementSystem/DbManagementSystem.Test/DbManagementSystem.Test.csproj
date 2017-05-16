@@ -64,6 +64,12 @@
     <Compile Include="Database\TableImporters\XmlTableImporterTest.cs" />
     <Compile Include="Database\TempDbServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Clauses\WhereClauseTest.cs" />
+    <Compile Include="Query\Executors\QueryExecutorTest.cs" />
+    <Compile Include="Query\QueryResultSerializers\CsvQueryResultSerializerTest.cs" />
+    <Compile Include="Query\QueryResultSerializers\XmlQueryResultSerializerTest.cs" />
+    <Compile Include="Query\SQLQueryResultTest.cs" />
+    <Compile Include="Query\SQLQueryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -73,6 +79,11 @@
       <Project>{C29095D6-AA49-424E-9F8C-3DDD647DBF08}</Project>
       <Name>DbManagementSystem.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Query\Executors\DatabaseQueryExecutors\" />
+    <Folder Include="Query\Executors\TableDataQueryExecutors\" />
+    <Folder Include="Query\Executors\TableQueryExecutors\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
