@@ -10,7 +10,7 @@ namespace DbManagementSystem.Test.Database
         [Fact]
         public void GetDatabase_WhenNoDatabase_ShouldReturnNull()
         {
-             var databaseConnection = Substitute.For<IDatabaseConnection>();
+            var databaseConnection = Substitute.For<IDatabaseConnection>();
             var databaseStorage = Substitute.For<IDatabaseStorageService>();
             var databaseConfiguration = Substitute.For<IDatabaseConfiguration>();
 
