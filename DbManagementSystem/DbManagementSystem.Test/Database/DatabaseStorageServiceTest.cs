@@ -275,7 +275,7 @@ namespace DbManagementSystem.Test.Database
         }
 
         [Fact]
-        public void CreateTable_WhenTableAlreadyExists_ShouldThrowError()
+        public void CreateTable_WhenTableAlreadyExists_ShouldThrowException()
         {
             var databaseStorageService = GetSUT();
             const string serverlocationDatabase = "C:\\serverLocation";

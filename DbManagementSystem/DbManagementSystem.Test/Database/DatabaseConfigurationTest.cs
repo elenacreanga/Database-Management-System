@@ -58,7 +58,7 @@ namespace DbManagementSystem.Test.Database
             var databaseConfiguration = GetSUT();
             const string dataType = "unknown";
             var result = databaseConfiguration.IsDataTypeAllowed(dataType);
-            Assert.True(result);
+            Assert.False(result);
         }
 
         [Fact]

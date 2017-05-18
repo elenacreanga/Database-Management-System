@@ -1,4 +1,5 @@
-﻿using DbManagementSystem.Core.Database;
+﻿using System;
+using DbManagementSystem.Core.Database;
 using DbManagementSystem.Core.Query;
 using DbManagementSystem.Core.Query.Executors;
 using NSubstitute;
@@ -65,6 +66,12 @@ namespace DbManagementSystem.Test.Query.Executors
             Assert.Equal("Database successfully created", result.Message);
         }
 
+        [Fact]
+        public void MatchesQuery_ShouldThrowNotImplementedException()
+        {
+            var queryExecutor = GetSUT();
+            Assert.ThrowsAny<NotImplementedException>(() => queryExecutor.MatchesQuery(new SqlQuery("Any Query")));
+        }
 
         private QueryExecutor GetSUT()
         {
