@@ -188,7 +188,7 @@ namespace DbManagementSystem.Test.Query.Executors
 
             databaseStorage.ExistsDatabase(Arg.Any<string>()).Returns(true);
             const string serverLocation = "server-location";
-            const string databaseName = "test";
+            const string databaseName = "testdb";
             const string tableName = "test";
 
             databaseStorage.ExistsDatabase(serverLocation + "/" + databaseName).Returns(true);
