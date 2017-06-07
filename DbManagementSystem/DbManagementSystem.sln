@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Test", "DbManagementSystem.Test\DbManagementSystem.Test.csproj", "{E650D732-34F1-4B66-9B2B-0EE6E9B15B7C}"
 EndProject
@@ -10,6 +10,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Console", "DbManagementSystem.Console\DbManagementSystem.Console.csproj", "{7C6E4585-D1DA-4A4E-B9E4-666C736AAFF4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.UI", "DbManagementSystem.UI\DbManagementSystem.UI.csproj", "{11AF1FF5-4B03-4A85-9764-2463D4BE6447}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Assertions", "DbManagementSystem.Assertions\DbManagementSystem.Assertions.csproj", "{F625106D-1711-44A5-BB51-31A5D2288CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbManagementSystem.Assertions.Console", "DbManagementSystem.Assertions.Console\DbManagementSystem.Assertions.Console.csproj", "{17957814-D1B5-4B0D-B411-19857E6C93F5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +37,14 @@ Global
 		{11AF1FF5-4B03-4A85-9764-2463D4BE6447}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11AF1FF5-4B03-4A85-9764-2463D4BE6447}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11AF1FF5-4B03-4A85-9764-2463D4BE6447}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F625106D-1711-44A5-BB51-31A5D2288CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F625106D-1711-44A5-BB51-31A5D2288CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F625106D-1711-44A5-BB51-31A5D2288CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F625106D-1711-44A5-BB51-31A5D2288CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17957814-D1B5-4B0D-B411-19857E6C93F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17957814-D1B5-4B0D-B411-19857E6C93F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17957814-D1B5-4B0D-B411-19857E6C93F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17957814-D1B5-4B0D-B411-19857E6C93F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
